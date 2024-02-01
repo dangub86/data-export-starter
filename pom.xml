@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.jspring</groupId>
-	<artifactId>data-export-starter</artifactId>
+	<artifactId>data-export-spring-boot-starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>data-export-starter</name>
+	<name>data-export-spring-boot-starter</name>
 	<description>Spring Boot Starter project for exporting data in different formats</description>
 	<properties>
 		<java.version>17</java.version>
