@@ -1,23 +1,26 @@
 package org.jspring.dataexportstarter.xlsx.service;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jspring.dataexportstarter.xlsx.domain.CellCoordinates;
 import org.jspring.dataexportstarter.xlsx.domain.CellSearch;
 import org.jspring.dataexportstarter.xlsx.domain.CellWrapper;
 import org.jspring.dataexportstarter.xlsx.domain.SheetInfo;
-import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Optional;
 
-@Service
+
 public class XlsxReadingService {
 
-    public XSSFWorkbook readFromTemplate(String templateName) {
-        try (FileInputStream inputStream = new FileInputStream(templateName)) {
+    private final String templatePath;
+    public XlsxReadingService(String templatePath) {
+        this.templatePath = templatePath;
+    }
+
+    public XSSFWorkbook readFromTemplate() {
+        try (FileInputStream inputStream = new FileInputStream(templatePath)) {
             return new XSSFWorkbook(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);

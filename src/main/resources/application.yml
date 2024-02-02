@@ -1,0 +1,5 @@
+
+spring:
+  export:
+    xlsx:
+      templatePath: src/main/resources/templates/xlsx/Risconti.xls

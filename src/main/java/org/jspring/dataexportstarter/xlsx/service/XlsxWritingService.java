@@ -2,12 +2,11 @@ package org.jspring.dataexportstarter.xlsx.service;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@Service
+
 public class XlsxWritingService {
 
     public void write(XSSFWorkbook workbook, String fileName) {

@@ -25,9 +25,7 @@ class XlsxReadingServiceTest {
 
     @BeforeEach
     public void setUp() {
-        XSSFWorkbook workbook = xlsxReadingService.readFromTemplate(
-                "src/main/resources/templates/xlsx/Risconti.xls"
-        );
+        XSSFWorkbook workbook = xlsxReadingService.readFromTemplate();
         sheetInfo = new SheetInfo(workbook, "Risconti");
     }
 

@@ -30,9 +30,7 @@ class XlsxWritingServiceTest {
 
     @BeforeEach
     public void setUp() {
-        workbook = xlsxReadingService.readFromTemplate(
-                "src/main/resources/templates/xlsx/Risconti.xls"
-        );
+        workbook = xlsxReadingService.readFromTemplate();
         sheetInfo = new SheetInfo(workbook, "Risconti");
     }
 
