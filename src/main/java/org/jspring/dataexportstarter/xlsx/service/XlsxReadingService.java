@@ -1,6 +1,9 @@
 package org.jspring.dataexportstarter.xlsx.service;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellAddress;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jspring.dataexportstarter.xlsx.domain.CellCoordinates;
 import org.jspring.dataexportstarter.xlsx.domain.CellSearch;
@@ -44,7 +47,7 @@ public class XlsxReadingService {
         }
     }
 
-    public <T> Optional<Cell> search(
+    public <T> Optional<Cell> searchCellBySheetAndCoordinates(
             SheetInfo sheetInfo,
             CellCoordinates<T> cellCoordinates
     ) {
@@ -54,8 +57,26 @@ public class XlsxReadingService {
 
     }
 
+    public Cell getCellByCoordinates(Cell cellX, Cell cellY) {
+        return getCellByCoordinates(cellY, cellX.getColumnIndex());
+    }
 
-    public CellWrapper<?> readValue(Cell cell) {
+    public Cell getRightCell(Cell cell) {
+        return getCellByCoordinates(cell, cell.getColumnIndex() + 1);
+    }
+
+    public Cell getLeftCell(Cell cell) {
+        return getCellByCoordinates(cell, cell.getColumnIndex() - 1);
+    }
+
+    private Cell getCellByCoordinates(Cell cellY, int columnIndex) {
+
+        return cellY.getRow().getCell(
+                columnIndex
+        );
+    }
+
+    public CellWrapper<?> readCellValue(Cell cell) {
 
         return switch (cell.getCellType()) {
             case STRING -> new CellWrapper<>(cell.getCellType(), cell.getStringCellValue());

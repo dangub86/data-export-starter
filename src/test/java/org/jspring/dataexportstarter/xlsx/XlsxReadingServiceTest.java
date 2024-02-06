@@ -33,7 +33,7 @@ class XlsxReadingServiceTest {
     @DisplayName("Search cell by value")
     void testXlsxTargetCell() {
 
-        Optional<Cell> cell = xlsxReadingService.search(
+        Optional<Cell> cell = xlsxReadingService.searchCellBySheetAndCoordinates(
                 sheetInfo,
                 SearchBuilder.init()
                         .cellValue("Voce :")
@@ -50,7 +50,7 @@ class XlsxReadingServiceTest {
     @DisplayName("Search cell by value in first column")
     void testXlsxTargetCellFirstCol() {
 
-        Optional<Cell> cellY = xlsxReadingService.search(
+        Optional<Cell> cellY = xlsxReadingService.searchCellBySheetAndCoordinates(
                 sheetInfo,
                 SearchBuilder.init()
                         .cellValue(202311.0)
@@ -69,14 +69,14 @@ class XlsxReadingServiceTest {
     @DisplayName("Search two cells by value")
     void testXlsxTargetCellAndWriteWithNamedCoordinates() {
 
-        Optional<Cell> cellX = xlsxReadingService.search(
+        Optional<Cell> cellX = xlsxReadingService.searchCellBySheetAndCoordinates(
                 sheetInfo,
                 SearchBuilder.init()
                         .cellValue("Quota")
                         .build()
         );
 
-        Optional<Cell> cellY = xlsxReadingService.search(
+        Optional<Cell> cellY = xlsxReadingService.searchCellBySheetAndCoordinates(
                 sheetInfo,
                 SearchBuilder.init()
                         .cellValue(202311)
@@ -94,7 +94,7 @@ class XlsxReadingServiceTest {
     @DisplayName("Get cell value by coordinates")
     void testXlsxTargetCellAndWriteWithCoordinates() {
 
-        xlsxReadingService.search(
+        xlsxReadingService.searchCellBySheetAndCoordinates(
                         sheetInfo,
                         SearchBuilder.init()
                                 .rowNumber(2)
@@ -102,7 +102,7 @@ class XlsxReadingServiceTest {
                                 .build()
                 )
                 .ifPresent(
-                        cell -> System.out.println("found coordinates value: " + xlsxReadingService.readValue(cell).value())
+                        cell -> System.out.println("found coordinates value: " + xlsxReadingService.readCellValue(cell).value())
                 );
 
     }
@@ -111,14 +111,14 @@ class XlsxReadingServiceTest {
     @DisplayName("Get cell value by cell address")
     void testXlsxTargetCellAndWriteWithAddress() {
 
-        xlsxReadingService.search(
+        xlsxReadingService.searchCellBySheetAndCoordinates(
                         sheetInfo,
                         SearchBuilder.init()
                                 .address("A2")
                                 .build()
                 )
                 .ifPresent(
-                        cell -> System.out.println("found coordinates address value: " + xlsxReadingService.readValue(cell).value())
+                        cell -> System.out.println("found coordinates address value: " + xlsxReadingService.readCellValue(cell).value())
                 );
 
     }

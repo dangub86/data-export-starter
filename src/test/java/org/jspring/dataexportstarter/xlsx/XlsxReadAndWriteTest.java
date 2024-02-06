@@ -34,7 +34,7 @@ class XlsxReadAndWriteTest {
         XSSFWorkbook workbook = xlsxReadingService.readFromTemplate();
         SheetInfo sheetInfo = new SheetInfo(workbook, "Risconti");
         assertNotNull(sheetInfo);
-        xlsxWritingService.write(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
+        xlsxWritingService.writeFile(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
 
         XSSFWorkbook workbookMod = xlsxReadingService.readFromTemplate("src/main/resources/xlsx/output/risconti-mod.xls");
         SheetInfo sheetInfoMod = new SheetInfo(workbookMod, "Risconti");
