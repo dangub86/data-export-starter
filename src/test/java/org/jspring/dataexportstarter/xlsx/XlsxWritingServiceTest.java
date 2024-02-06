@@ -1,7 +1,6 @@
 package org.jspring.dataexportstarter.xlsx;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jspring.dataexportstarter.xlsx.domain.SheetInfo;
@@ -51,8 +50,7 @@ class XlsxWritingServiceTest {
             System.out.println("found!!!");
             xlsxWritingService.writeValue(
                     xlsxReadingService.getRightCell(cell.get()),
-                    "voce1234",
-                    CellType.STRING
+                    "voce1234"
             );
 
             xlsxWritingService.writeFile(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
@@ -84,8 +82,7 @@ class XlsxWritingServiceTest {
             System.out.println("found coordinates: x -> " + cellX.get().getColumnIndex() + " y -> " + cellY.get().getRowIndex());
             xlsxWritingService.writeValue(
                     xlsxReadingService.getCellByCoordinates(cellX.get(), cellY.get()),
-                    12.34,
-                    CellType.NUMERIC
+                    12.34
             );
 
             xlsxWritingService.writeFile(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");

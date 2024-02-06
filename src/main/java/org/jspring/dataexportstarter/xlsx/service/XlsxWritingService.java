@@ -1,9 +1,7 @@
 package org.jspring.dataexportstarter.xlsx.service;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.jspring.dataexportstarter.xlsx.domain.CellWrapper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -30,36 +28,17 @@ public class XlsxWritingService {
         }
     }
 
-    public void writeToTheRightOfTheCell(
-            Cell cell,
-            String value
-    ) {
-
-        Cell cell1 = cell.getRow().getCell(cell.getColumnIndex() + 1);
-        cell1.setCellValue(value);
-
-    }
-
     public void writeValue(
-            Cell cell, Object value, CellType cellType) {
+            Cell cell, Object value) {
 
-        switch (cellType) {
-            case STRING, FORMULA -> cell.setCellValue((String) value);
-            case NUMERIC -> cell.setCellValue((double) value);
-            case BOOLEAN -> cell.setCellValue((boolean) value);
+        switch (value) {
+            case String stringVal -> cell.setCellValue(stringVal);
+            case Double doubleVal -> cell.setCellValue(doubleVal);
+            case Boolean booleanVal -> cell.setCellValue(booleanVal);
+            default -> throw new IllegalStateException("Unexpected value type: " + value.getClass().getName());
         }
 
     }
-
- /*   public void writeWithCellCoordinates(
-            Cell cellX, Cell cellY, double value) {
-
-        Cell cell = cellY.getRow().getCell(
-                cellX.getColumnIndex()
-        );
-
-        cell.setCellValue(value);
-    }*/
 
 
 }
