@@ -7,6 +7,7 @@ import org.jspring.dataexportstarter.xlsx.domain.CellSearch;
 import org.jspring.dataexportstarter.xlsx.domain.CellWrapper;
 import org.jspring.dataexportstarter.xlsx.domain.SheetInfo;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Optional;
@@ -21,6 +22,22 @@ public class XlsxReadingService {
 
     public XSSFWorkbook readFromTemplate() {
         try (FileInputStream inputStream = new FileInputStream(templatePath)) {
+            return new XSSFWorkbook(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public XSSFWorkbook readFromTemplate(String templatePath) {
+        try (FileInputStream inputStream = new FileInputStream(templatePath)) {
+            return new XSSFWorkbook(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public XSSFWorkbook readFromByteArray(byte[] fileContent) {
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(fileContent)) {
             return new XSSFWorkbook(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);

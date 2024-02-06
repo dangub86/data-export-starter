@@ -49,7 +49,7 @@ class XlsxWritingServiceTest {
         if (cell.isPresent()) {
             System.out.println("found!!!");
             xlsxWritingService.writeToTheRightOfTheCell(cell.get(), "voce1234");
-            xlsxWritingService.write(workbook, "src/main/resources/templates/xlsx/risconti-mod.xls");
+            xlsxWritingService.write(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
         }
 
     }
@@ -78,7 +78,7 @@ class XlsxWritingServiceTest {
             System.out.println("found coordinates: x -> " + cellX.get().getColumnIndex() + " y -> " + cellY.get().getRowIndex());
             xlsxWritingService.writeWithCellCoordinates(cellX.get(), cellY.get(), 12.34);
 
-            xlsxWritingService.write(workbook, "src/main/resources/templates/xlsx/risconti-mod.xls");
+            xlsxWritingService.write(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
         }
 
     }
@@ -104,7 +104,7 @@ class XlsxWritingServiceTest {
             formulaEvaluator.evaluate(cellRight);
         }
 
-        xlsxWritingService.write(workbook, "src/main/resources/templates/xlsx/risconti-mod.xls");
+        xlsxWritingService.write(workbook, "src/main/resources/xlsx/output/risconti-mod.xls");
 
     }
 
